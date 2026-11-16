@@ -29,8 +29,9 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 4rem;
+    scroll-padding-top: 4.5rem;
     -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     overflow-x: clip;
   }
   body {
@@ -41,6 +42,7 @@
     line-height: 22px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
     min-width: 320px;
   }
@@ -52,24 +54,35 @@
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 2xl:max-w-[1400px];
+    @apply mx-auto w-full max-w-[1280px] 2xl:max-w-[1380px];
+    padding-left: max(1.125rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.125rem, env(safe-area-inset-right, 0px));
+  }
+  @media (min-width: 640px) {
+    .container-x {
+      padding-left: max(2rem, env(safe-area-inset-left, 0px));
+      padding-right: max(2rem, env(safe-area-inset-right, 0px));
+    }
   }
   /* Etiqueta meta: 12px/16px, tracking 0.01em, sin uppercase (tokens.md) */
   .section-label {
     @apply font-mono text-xs leading-4 tracking-[0.01em] text-mist-400;
   }
-  /* Page title: 28 a 36px, line-height 1.12, tracking -0.02em */
+  /* Page title fluida desde 320px hasta monitores grandes */
   .title {
-    @apply font-display text-[32px] font-normal tracking-[-0.02em] leading-[1.1] text-mist-100 sm:text-[40px] lg:text-[44px];
+    @apply font-display font-normal tracking-[-0.02em] leading-[1.1] text-mist-100;
+    font-size: clamp(1.85rem, 4.2vw, 2.75rem);
   }
-  /* Botones hero 44-48px, radio 9px, con highlight superior sutil (tokens.md) */
+  /* Botones hero 44px, radio 9px, con highlight superior sutil (tokens.md) */
   .btn-primary {
     @apply inline-flex h-11 items-center justify-center gap-2 rounded-[9px] bg-mist-100 px-5 text-sm font-medium text-ink-900 transition-colors duration-150 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-[0.98];
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    touch-action: manipulation;
   }
   .btn-ghost {
-    @apply inline-flex h-11 items-center justify-center gap-2 rounded-[9px] border border-mist-100/8 bg-ink-700 px-5 text-sm font-medium text-mist-100 transition-colors duration-150 hover:border-mist-100/16 hover:bg-ink-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-[0.98];
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-[9px] border border-mist-100/10 bg-ink-700 px-5 text-sm font-medium text-mist-100 transition-colors duration-150 hover:border-mist-100/20 hover:bg-ink-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-[0.98];
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    touch-action: manipulation;
   }
   /* Tarjeta con borde hairline al 8% y radio 14px */
   .card {
@@ -91,12 +104,20 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
     font-variant-numeric: tabular-nums;
   }
+  /* Ocultar barra de scroll manteniendo desplazamiento táctil */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Máscara suave para fundir la escena generada con el fondo #0b0b0d (visuals.md) */
 .scene-mask {
-  mask-image: radial-gradient(ellipse 85% 80% at 72% 42%, #000 45%, transparent 95%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 80% at 72% 42%, #000 45%, transparent 95%);
+  mask-image: radial-gradient(ellipse 88% 82% at 70% 45%, #000 45%, transparent 96%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 82% at 70% 45%, #000 45%, transparent 96%);
 }
 
 /* Perspectiva y capas 3D */

@@ -32,7 +32,7 @@
     overflow-x:hidden;
   }
   .demo-bar{
-    position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:80;
+    position:fixed;top:max(12px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:80;
     display:flex;align-items:center;gap:12px;
     background:rgba(74,43,56,.92);color:#fff;
     padding:8px 16px;border-radius:999px;font-size:.82rem;font-weight:600;

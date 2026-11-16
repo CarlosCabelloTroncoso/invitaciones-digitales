@@ -15,9 +15,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0b0b0d" />
+    <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" as="image" href="/visuals/hero-scene.jpg" />
@@ -50,7 +51,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
             }
           }
         },
-        { threshold: 0.1 }
+        { threshold: 0.08 }
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
     </script>

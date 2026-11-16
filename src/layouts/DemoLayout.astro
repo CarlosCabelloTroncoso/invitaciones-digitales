@@ -13,9 +13,10 @@ const { title, description = 'Invitación digital' } = Astro.props;
 <html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
     <meta name="robots" content="noindex" />
+    <meta name="format-detection" content="telephone=no" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -32,7 +33,7 @@ const { title, description = 'Invitación digital' } = Astro.props;
 
     <a
       href="/#catalogo"
-      class="surface-raised fixed left-4 top-4 z-50 inline-flex h-8 items-center gap-2 rounded-[8px] px-3 font-mono text-xs text-mist-100 backdrop-blur-md transition-colors hover:bg-ink-600"
+      class="surface-raised fixed left-[max(0.875rem,env(safe-area-inset-left))] top-[max(0.875rem,env(safe-area-inset-top))] z-50 inline-flex h-9 items-center gap-2 rounded-[8px] px-3 font-mono text-xs text-mist-100 backdrop-blur-md transition-colors hover:bg-ink-600"
     >
       <span>← Catálogo · {SITE.nombre}</span>
     </a>
@@ -46,7 +47,7 @@ const { title, description = 'Invitación digital' } = Astro.props;
               io.unobserve(e.target);
             }
           }),
-        { threshold: 0.1 }
+        { threshold: 0.08 }
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
