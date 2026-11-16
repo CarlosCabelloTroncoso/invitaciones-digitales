@@ -5,7 +5,7 @@ plan: personalizada
 precio: 19990
 descripcion: Inspirada en papel algodón verde bosque y ramas de olivo, con itinerario completo y recomendaciones de hospedaje.
 colores: ["#13201a", "#a8c3a0"]
-imagen: /visuals/cat-boda-jardin.jpg
+imagen: /visuals/cat-boda-jardin.webp
 orden: 6
 caracteristicas:
   - Estética botánica en verde bosque y lacre dorado

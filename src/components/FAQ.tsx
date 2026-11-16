@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
 
 const faqs = [
   {
@@ -49,28 +48,25 @@ export default function FAQ() {
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="1.6"
-                  className={`transition-transform duration-150 ${open ? 'rotate-45 text-indigo-900' : ''}`}
+                  className={`transition-transform duration-200 ${open ? 'rotate-45 text-indigo-900' : ''}`}
                   aria-hidden="true"
                 >
                   <path d="M12 5v14M5 12h14" />
                 </svg>
               </span>
             </button>
-            <AnimatePresence initial={false}>
-              {open && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="overflow-hidden"
-                >
-                  <p className="pb-4 pr-8 text-xs leading-5 text-charcoal-600 sm:text-sm sm:leading-6 num">
-                    {f.a}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+
+            <div
+              className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out ${
+                open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+              }`}
+            >
+              <div className="overflow-hidden">
+                <p className="pb-4 pr-8 text-xs leading-5 text-charcoal-600 sm:text-sm sm:leading-6 num">
+                  {f.a}
+                </p>
+              </div>
+            </div>
           </div>
         );
       })}

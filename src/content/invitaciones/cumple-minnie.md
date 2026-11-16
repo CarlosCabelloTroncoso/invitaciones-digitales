@@ -5,7 +5,7 @@ plan: personalizada
 precio: 19990
 descripcion: Diseño dulce con ilustraciones de Minnie Mouse, música integrada, corazones flotantes, marco polaroid y ubicación con mapa.
 colores: ["#381426", "#ff5fa2"]
-imagen: /demos/cumple-minnie/minnie-portada.png
+imagen: /demos/cumple-minnie/minnie-portada.webp
 destacado: true
 demoPropia: true
 orden: 3

@@ -5,7 +5,7 @@ plan: personalizada
 precio: 19990
 descripcion: Diseño luminoso en tonos marfil y dorado con retrato de novios, itinerario, dress code, datos bancarios copiables y RSVP.
 colores: ["#faf7f2", "#c29d59"]
-imagen: /visuals/cat-boda-jardin.jpg
+imagen: /visuals/cat-boda-jardin.webp
 destacado: true
 demoPropia: true
 orden: 4

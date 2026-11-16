@@ -5,7 +5,7 @@ plan: personalizada
 precio: 19990
 descripcion: Invitación infantil animada con música temática, anillos flotantes, contador de edad, marco para foto y mapa interactivo.
 colores: ["#0b1d48", "#ffcc00"]
-imagen: /demos/cumple-sonic/sonic-portada.png
+imagen: /demos/cumple-sonic/sonic-portada.webp
 destacado: true
 demoPropia: true
 orden: 2

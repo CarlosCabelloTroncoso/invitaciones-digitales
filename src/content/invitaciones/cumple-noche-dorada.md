@@ -5,7 +5,7 @@ plan: personalizada
 precio: 19990
 descripcion: Invitación de aniversario o cumpleaños en negro biselado y oro con música, cuenta regresiva y playlist colaborativa.
 colores: ["#111111", "#d4b483"]
-imagen: /visuals/cat-cumple-noche-dorada.jpg
+imagen: /visuals/cat-cumple-noche-dorada.webp
 orden: 5
 caracteristicas:
   - Música de fondo al abrir la invitación

@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
 
 export type Item = {
   slug: string;
@@ -104,7 +103,7 @@ export default function Catalogo({ items, whatsapp }: { items: Item[]; whatsapp:
   const wa = (i: Item) =>
     `https://wa.me/${whatsapp}?text=${encodeURIComponent(`Hola, quiero encargar el diseño "${i.titulo}" (${clp(i.precio)})`)}`;
 
-  const isCutout = (img?: string) => Boolean(img?.endsWith('.png'));
+  const isCutout = (img?: string) => Boolean(img?.startsWith('/demos/'));
 
   return (
     <div>
@@ -180,7 +179,6 @@ export default function Catalogo({ items, whatsapp }: { items: Item[]; whatsapp:
               key={item.slug}
               className="sheet group relative flex w-[82vw] max-w-[320px] shrink-0 snap-start flex-col justify-between overflow-hidden transition-colors duration-200 hover:border-charcoal-900/24 sm:w-[310px] sm:max-w-none md:w-[330px] lg:w-[360px]"
             >
-              {/* Lámina superior: imagen limpia con margen de paseo */}
               <button
                 type="button"
                 onClick={() => setActivo(item)}
@@ -200,6 +198,9 @@ export default function Catalogo({ items, whatsapp }: { items: Item[]; whatsapp:
                       src={item.imagen}
                       alt={item.titulo}
                       loading="lazy"
+                      decoding="async"
+                      width="480"
+                      height="360"
                       className={`h-full w-full transition-transform duration-500 group-hover:scale-[1.03] ${
                         cutout ? 'object-contain p-5 drop-shadow-[0_12px_20px_rgba(18,18,20,0.18)]' : 'object-cover'
                       }`}
@@ -217,7 +218,6 @@ export default function Catalogo({ items, whatsapp }: { items: Item[]; whatsapp:
                   </div>
                 </div>
 
-                {/* Pie editorial sobre blanco puro */}
                 <div className="px-4 pt-4">
                   <div className="flex items-baseline justify-between gap-2">
                     <h3 className="truncate font-display text-2xl leading-tight text-charcoal-900">{item.titulo}</h3>
@@ -229,7 +229,6 @@ export default function Catalogo({ items, whatsapp }: { items: Item[]; whatsapp:
                 </div>
               </button>
 
-              {/* Acciones directas abajo */}
               <div className="mt-4 grid grid-cols-2 gap-2 px-4 pb-4">
                 <a
                   href={`/demos/${item.slug}/`}
@@ -275,85 +274,76 @@ export default function Catalogo({ items, whatsapp }: { items: Item[]; whatsapp:
         </div>
       )}
 
-      {/* Modal opcional de detalle */}
-      <AnimatePresence>
-        {activo && (
-          <motion.div
-            className="fixed inset-0 z-[60] flex items-end justify-center bg-charcoal-900/45 p-0 backdrop-blur-xs sm:items-center sm:p-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            onClick={() => setActivo(null)}
+      {/* Modal nativo con animación CSS de GPU (sin runtime de motion) */}
+      {activo && (
+        <div
+          className="modal-fade fixed inset-0 z-[60] flex items-end justify-center bg-charcoal-900/45 p-0 backdrop-blur-xs sm:items-center sm:p-6"
+          onClick={() => setActivo(null)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={activo.titulo}
+            onClick={(e) => e.stopPropagation()}
+            className="modal-panel grid max-h-[90dvh] w-full max-w-2xl overflow-y-auto rounded-t-[18px] border border-charcoal-900/14 bg-paper-50 p-3 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_32px_64px_-24px_rgba(18,18,20,0.32)] sm:rounded-[18px] sm:pb-3 md:grid-cols-2"
           >
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-label={activo.titulo}
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 10, opacity: 0 }}
-              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              className="grid max-h-[90dvh] w-full max-w-2xl overflow-y-auto rounded-t-[18px] border border-charcoal-900/14 bg-paper-50 p-3 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_32px_64px_-24px_rgba(18,18,20,0.32)] sm:rounded-[18px] sm:pb-3 md:grid-cols-2"
+            <div
+              style={
+                isCutout(activo.imagen)
+                  ? { background: `radial-gradient(circle at 50% 45%, ${activo.colores[0]}18 0%, #f4f1ea 88%)` }
+                  : undefined
+              }
+              className="aspect-[16/10] overflow-hidden rounded-[10px] border border-charcoal-900/10 bg-paper-200 sm:aspect-[4/3] md:aspect-auto"
             >
-              <div
-                style={
-                  isCutout(activo.imagen)
-                    ? { background: `radial-gradient(circle at 50% 45%, ${activo.colores[0]}18 0%, #f4f1ea 88%)` }
-                    : undefined
-                }
-                className="aspect-[16/10] overflow-hidden rounded-[10px] border border-charcoal-900/10 bg-paper-200 sm:aspect-[4/3] md:aspect-auto"
-              >
-                {activo.imagen && (
-                  <img
-                    src={activo.imagen}
-                    alt={activo.titulo}
-                    className={`h-full w-full ${isCutout(activo.imagen) ? 'object-contain p-6' : 'object-cover'}`}
-                  />
-                )}
+              {activo.imagen && (
+                <img
+                  src={activo.imagen}
+                  alt={activo.titulo}
+                  decoding="async"
+                  className={`h-full w-full ${isCutout(activo.imagen) ? 'object-contain p-6' : 'object-cover'}`}
+                />
+              )}
+            </div>
+
+            <div className="flex flex-col justify-between p-4 sm:p-5">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs text-gold-600">Plan {PLANES[activo.plan]}</span>
+                  <button
+                    onClick={() => setActivo(null)}
+                    className="flex h-8 w-8 items-center justify-center rounded-[8px] border border-charcoal-900/12 bg-paper-100 text-charcoal-700 hover:bg-paper-200"
+                    aria-label="Cerrar"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <h3 className="mt-2 font-display text-2xl text-charcoal-900 sm:text-3xl">{activo.titulo}</h3>
+                <ul className="mt-4 space-y-2 border-t border-charcoal-900/10 pt-4 text-xs text-charcoal-700">
+                  {activo.caracteristicas.map((c) => (
+                    <li key={c} className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" />
+                      <span>{c}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="flex flex-col justify-between p-4 sm:p-5">
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-gold-600">Plan {PLANES[activo.plan]}</span>
-                    <button
-                      onClick={() => setActivo(null)}
-                      className="flex h-8 w-8 items-center justify-center rounded-[8px] border border-charcoal-900/12 bg-paper-100 text-charcoal-700 hover:bg-paper-200"
-                      aria-label="Cerrar"
-                    >
-                      ✕
-                    </button>
-                  </div>
-                  <h3 className="mt-2 font-display text-2xl text-charcoal-900 sm:text-3xl">{activo.titulo}</h3>
-                  <ul className="mt-4 space-y-2 border-t border-charcoal-900/10 pt-4 text-xs text-charcoal-700">
-                    {activo.caracteristicas.map((c) => (
-                      <li key={c} className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" />
-                        <span>{c}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-charcoal-900/10 pt-4">
-                  <span className="font-mono text-xl font-medium text-charcoal-900 num">{clp(activo.precio)}</span>
-                  <div className="flex gap-2">
-                    <a href={`/demos/${activo.slug}/`} target="_blank" rel="noopener" className="btn-ghost h-9 px-3 text-xs">
-                      Ver demo
-                    </a>
-                    <a href={wa(activo)} target="_blank" rel="noopener" className="btn-primary h-9 px-3.5 text-xs">
-                      <WaIcon />
-                      <span>Pedir</span>
-                    </a>
-                  </div>
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-charcoal-900/10 pt-4">
+                <span className="font-mono text-xl font-medium text-charcoal-900 num">{clp(activo.precio)}</span>
+                <div className="flex gap-2">
+                  <a href={`/demos/${activo.slug}/`} target="_blank" rel="noopener" className="btn-ghost h-9 px-3 text-xs">
+                    Ver demo
+                  </a>
+                  <a href={wa(activo)} target="_blank" rel="noopener" className="btn-primary h-9 px-3.5 text-xs">
+                    <WaIcon />
+                    <span>Pedir</span>
+                  </a>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

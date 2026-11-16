@@ -5,7 +5,7 @@ plan: premium
 precio: 34990
 descripcion: Sobre 3D con sello de lacre que extrae el parte al tocar, música de fondo, cuenta regresiva, itinerario y pases nominativos.
 colores: ["#0b0b0d", "#d4b483"]
-imagen: /visuals/cat-boda-elegante.jpg
+imagen: /visuals/cat-boda-elegante.webp
 destacado: true
 demoPropia: true
 orden: 1
