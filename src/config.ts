@@ -10,7 +10,7 @@ export const SITE = {
   whatsapp: '56945701201',
   whatsappDisplay: '+56 9 4570 1201',
   email: 'ignaciocarlos016@gmail.com',
-  ciudad: 'Santiago, Chile',
+  ciudad: 'Talca, Región del Maule · Chile',
 };
 
 export const waLink = (mensaje = 'Hola, me interesa cotizar una invitación digital') =>
