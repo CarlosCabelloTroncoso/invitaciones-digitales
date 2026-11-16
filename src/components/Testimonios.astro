@@ -1,0 +1,48 @@
+---
+const entregables = [
+  {
+    codigo: '01 · Enlace web',
+    titulo: 'Página optimizada para teléfonos',
+    detalle: 'Carga instantánea en iOS y Android con vista previa configurada (nombres, fecha y portada) al pegarla en un chat de WhatsApp.',
+  },
+  {
+    codigo: '02 · Pases y envíos',
+    titulo: 'Enlaces por familia y textos listos',
+    detalle: 'En los planes con gestión de invitados recibes la tabla con el link único de cada familia y el mensaje redactado para copiar y enviar.',
+  },
+  {
+    codigo: '03 · Control de asistencia',
+    titulo: 'Planilla de confirmados en tiempo real',
+    detalle: 'Acceso directo a Google Sheets con el conteo actualizado de adultos, niños, alergias alimentarias y canciones sugeridas.',
+  },
+  {
+    codigo: '04 · Respaldo impreso',
+    titulo: 'Archivo PDF de alta resolución',
+    detalle: 'Versión estática del diseño lista para imprimir si deseas entregar recuerdos en papel a abuelos o familiares cercanos.',
+  },
+];
+---
+
+<section class="border-y border-mist-100/8 bg-ink-950 py-20 sm:py-26">
+  <div class="container-x">
+    <div class="reveal max-w-2xl">
+      <p class="section-label">Entregables del servicio</p>
+      <h2 class="title mt-3">Qué incluye cada proyecto al momento de publicar</h2>
+      <p class="mt-3 text-sm leading-6 text-mist-300">
+        No entregamos plantillas genéricas ni imágenes sueltas: recibes un paquete completo para enviar las invitaciones y organizar la recepción.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+      {entregables.map((e) => (
+        <article class="reveal card flex flex-col justify-between p-5 sm:p-6">
+          <div>
+            <span class="font-mono text-xs text-gold-400 num">{e.codigo}</span>
+            <h3 class="mt-3 text-base font-medium text-mist-100">{e.titulo}</h3>
+            <p class="mt-2 text-xs leading-5 text-mist-300">{e.detalle}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

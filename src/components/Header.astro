@@ -1,0 +1,42 @@
+---
+import { SITE, waLink } from '@/config';
+
+const links = [
+  { href: '#catalogo', label: 'Catálogo' },
+  { href: '#planes', label: 'Precios' },
+  { href: '#faq', label: 'Preguntas' },
+];
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-mist-100/8 bg-ink-900/90 backdrop-blur-md">
+  <nav class="container-x flex h-15 items-center justify-between gap-4">
+    <a href="/" class="flex shrink-0 items-center py-1" aria-label={SITE.nombre}>
+      <img
+        src={SITE.logo}
+        alt={SITE.nombre}
+        width="132"
+        height="46"
+        class="h-7 w-auto sm:h-8"
+      />
+    </a>
+
+    <ul class="hidden items-center gap-7 text-sm text-mist-300 md:flex">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="py-1 transition-colors duration-150 hover:text-mist-100">
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex items-center gap-2.5">
+      <a href="/demos/boda-elegante" class="hidden text-xs text-mist-300 transition-colors hover:text-mist-100 sm:inline">
+        Demo 3D
+      </a>
+      <a href={waLink()} target="_blank" rel="noopener" class="btn-primary h-9 px-3.5 text-xs">
+        Cotizar
+      </a>
+    </div>
+  </nav>
+</header>

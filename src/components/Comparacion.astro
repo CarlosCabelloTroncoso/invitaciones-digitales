@@ -1,0 +1,96 @@
+---
+const filas = [
+  {
+    criterio: 'Presupuesto para 100 invitados',
+    digital: '$9.990 a $49.990 CLP',
+    papel: '$150.000 a $400.000 CLP',
+  },
+  {
+    criterio: 'Cargo por diseño gráfico',
+    digital: 'Incluido en el plan',
+    papel: '$40.000 a $120.000 CLP adicionales',
+  },
+  {
+    criterio: 'Tiempo de entrega',
+    digital: '48 horas hábiles',
+    papel: '2 a 4 semanas de imprenta',
+  },
+  {
+    criterio: 'Distribución a invitados',
+    digital: 'Enlace directo por WhatsApp',
+    papel: 'Entrega presencial o courier',
+  },
+  {
+    criterio: 'Confirmación de asistencia (RSVP)',
+    digital: 'Botón integrado o control de cupos en vivo',
+    papel: 'Seguimiento telefónico manual',
+  },
+  {
+    criterio: 'Rutas hacia la ceremonia y fiesta',
+    digital: 'Conexión directa con Waze y Google Maps',
+    papel: 'Mapa impreso estático',
+  },
+  {
+    criterio: 'Cambios de horario o dirección',
+    digital: 'Actualización inmediata en el mismo link',
+    papel: 'Reimpresión completa del tiraje',
+  },
+];
+---
+
+<section id="comparacion" class="py-20 sm:py-26">
+  <div class="container-x">
+    <div class="reveal max-w-2xl">
+      <p class="section-label">Comparativa de costos en Chile</p>
+      <h2 class="title mt-3">Papelería digital frente a partes impresos</h2>
+      <p class="mt-3 text-sm leading-6 text-mist-300">
+        En Chile, encargar 100 partes de matrimonio en papel algodón u opalina con sobres y diseño supera los $150.000 CLP. Una invitación web resuelve el diseño, el envío y la confirmación de asistencia por una fracción de ese presupuesto.
+      </p>
+    </div>
+
+    <!-- Vista móvil (< 640px): tarjetas apiladas sin scroll horizontal -->
+    <div class="reveal mt-8 space-y-3 sm:hidden">
+      {filas.map((f) => (
+        <article class="card p-4">
+          <h3 class="text-sm font-medium text-mist-100">{f.criterio}</h3>
+          <div class="mt-3 grid grid-cols-2 gap-2.5 border-t border-mist-100/8 pt-3 text-xs">
+            <div class="surface-raised rounded-[8px] p-2.5">
+              <p class="font-mono text-xs text-gold-400">Digital</p>
+              <p class="mt-1 font-mono text-xs text-mist-100 num">{f.digital}</p>
+            </div>
+            <div class="rounded-[8px] border border-mist-100/8 bg-ink-900 p-2.5">
+              <p class="font-mono text-xs text-mist-400">Impresa</p>
+              <p class="mt-1 font-mono text-xs text-mist-400 num">{f.papel}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Vista tablet y escritorio (>= 640px) -->
+    <div class="reveal card mt-10 hidden overflow-hidden sm:block">
+      <table class="w-full border-collapse text-left text-xs sm:text-sm">
+        <thead>
+          <tr class="border-b border-mist-100/8 bg-ink-950/60 text-xs text-mist-400">
+            <th scope="col" class="py-3.5 pl-6 pr-4 font-normal">Criterio</th>
+            <th scope="col" class="px-4 py-3.5 font-medium text-gold-400">Invitación digital</th>
+            <th scope="col" class="py-3.5 pl-4 pr-6 font-normal text-mist-400">Parte impreso tradicional</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-mist-100/8">
+          {filas.map((f) => (
+            <tr class="transition-colors hover:bg-ink-700/40">
+              <td class="py-4 pl-6 pr-4 font-medium text-mist-100">{f.criterio}</td>
+              <td class="bg-ink-700/30 px-4 py-4 font-mono text-xs text-mist-100 num">{f.digital}</td>
+              <td class="py-4 pl-4 pr-6 font-mono text-xs text-mist-400 num">{f.papel}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="mt-4 text-xs leading-5 text-mist-400">
+      Valores referenciales del mercado chileno para 100 unidades en papelería de bodas tradicional. Si deseas entregar algunos ejemplares físicos a familiares mayores, incluimos versión en PDF de alta resolución lista para imprimir.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+---
+const pasos = [
+  {
+    n: '01',
+    plazo: 'Día 1',
+    t: 'Eliges el modelo y la modalidad de envío',
+    d: 'Seleccionas un diseño del catálogo con link general para todos tus invitados, o con pases nominativos por familia para controlar cupos.',
+  },
+  {
+    n: '02',
+    plazo: 'Día 1',
+    t: 'Nos envías los datos de tu celebración',
+    d: 'Completas un formulario breve con nombres, fecha, horarios, direcciones para Waze y Google Maps, código de vestimenta, datos de regalo y fotos.',
+  },
+  {
+    n: '03',
+    plazo: '48 h hábiles',
+    t: 'Revisas la muestra privada en tu teléfono',
+    d: 'Publicamos un enlace de prueba para que recorras la invitación completa y solicites ajustes de texto, colores o secciones.',
+  },
+  {
+    n: '04',
+    plazo: 'Entrega final',
+    t: 'Compartes por WhatsApp y recibes confirmaciones',
+    d: 'Te entregamos el enlace definitivo (o la planilla con los links personalizados de cada familia) listo para enviar sin límite de reenvíos.',
+  },
+];
+---
+
+<section id="como-funciona" class="border-y border-mist-100/8 bg-ink-950 py-20 sm:py-26">
+  <div class="container-x grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
+    <div class="reveal min-w-0 lg:col-span-5 lg:sticky lg:top-24">
+      <p class="section-label">Proceso de trabajo</p>
+      <h2 class="title mt-3">De tus datos al enlace publicado en 48 horas hábiles</h2>
+      <p class="mt-4 text-sm leading-6 text-mist-300">
+        Cada invitación se programa como un sitio web independiente. Tus invitados abren el sobre desde cualquier teléfono sin instalar aplicaciones ni crear cuentas.
+      </p>
+
+      <div class="card mt-7 p-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+          <span class="text-mist-400">Cambios posteriores</span>
+          <span class="font-mono text-gold-400">Sin cambiar el link</span>
+        </div>
+        <p class="mt-2 text-xs leading-5 text-mist-300">
+          Si cambia el horario de la ceremonia o el salón, actualizamos los datos sobre el mismo enlace para que todos tus invitados vean la versión vigente.
+        </p>
+      </div>
+    </div>
+
+    <ol class="reveal card min-w-0 divide-y divide-mist-100/8 lg:col-span-7">
+      {pasos.map((p) => (
+        <li class="grid gap-3 p-5 sm:grid-cols-[96px_1fr] sm:items-start sm:gap-4 sm:p-6">
+          <div class="flex items-center justify-between sm:flex-col sm:items-start sm:gap-1">
+            <span class="font-mono text-xs text-gold-400 num">Paso {p.n}</span>
+            <span class="font-mono text-xs text-mist-400 num">{p.plazo}</span>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-base font-medium text-mist-100">{p.t}</h3>
+            <p class="mt-1.5 text-xs leading-5 text-mist-300">{p.d}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

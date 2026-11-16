@@ -1,0 +1,44 @@
+---
+import { SITE, waLink } from '@/config';
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-mist-100/8 bg-ink-950 py-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+  <div class="container-x flex flex-col items-start justify-between gap-6 text-xs text-mist-400 sm:flex-row sm:items-center">
+    <div class="flex flex-wrap items-center gap-3">
+      <img
+        src={SITE.logo}
+        alt={SITE.nombre}
+        width="112"
+        height="40"
+        class="h-7 w-auto"
+        loading="lazy"
+      />
+      <span>·</span>
+      <span class="num">© {year} {SITE.ciudad}</span>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-6">
+      <a href={SITE.instagram} target="_blank" rel="noopener" class="transition-colors hover:text-mist-100">
+        Instagram
+      </a>
+      <a href={waLink()} target="_blank" rel="noopener" class="transition-colors hover:text-mist-100">
+        WhatsApp
+      </a>
+      <a href={`mailto:${SITE.email}`} class="transition-colors hover:text-mist-100">
+        Correo
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a
+  href={waLink()}
+  target="_blank"
+  rel="noopener"
+  aria-label="Cotizar por WhatsApp"
+  class="surface-raised fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-4 z-40 inline-flex h-10 items-center gap-2 rounded-[9px] px-3.5 text-xs font-medium text-mist-100 backdrop-blur-md transition-colors duration-150 hover:bg-ink-600 sm:right-5"
+>
+  <span class="h-2 w-2 rounded-full bg-gold-400"></span>
+  <span>WhatsApp</span>
+</a>
