@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Hero from '@/components/Hero.astro';
+import Catalogo from '@/components/Catalogo';
+import Planes from '@/components/Planes.astro';
+import FAQ from '@/components/FAQ';
+import Contacto from '@/components/Contacto.astro';
+import Footer from '@/components/Footer.astro';
+import { SITE } from '@/config';
+
+const items = (await getCollection('invitaciones'))
+  .sort((a, b) => a.data.orden - b.data.orden)
+  .map(({ id, data }) => ({
+    slug: id,
+    titulo: data.titulo,
+    evento: data.evento,
+    plan: data.plan,
+    precio: data.precio,
+    descripcion: data.descripcion,
+    colores: data.colores,
+    destacado: data.destacado,
+    caracteristicas: data.caracteristicas,
+    imagen: data.imagen,
+  }));
+---
+
+<Layout>
+  <Header />
+  <main>
+    <Hero />
+
+    <section id="catalogo" class="py-16 sm:py-20">
+      <div class="container-x">
+        <div class="reveal flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
+          <div>
+            <p class="section-label">Catálogo</p>
+            <h2 class="title mt-2">Elige tu invitación</h2>
+          </div>
+          <p class="text-xs text-mist-400">Prueba la demo en vivo o pídela directo por WhatsApp</p>
+        </div>
+        <div class="mt-8">
+          <Catalogo client:visible items={items} whatsapp={SITE.whatsapp} />
+        </div>
+      </div>
+    </section>
+
+    <Planes />
+
+    <section id="faq" class="border-t border-mist-100/8 py-16 sm:py-20">
+      <div class="container-x grid gap-8 lg:grid-cols-12 lg:gap-12">
+        <div class="reveal min-w-0 lg:col-span-4">
+          <p class="section-label">Dudas rápidas</p>
+          <h2 class="title mt-2">Preguntas frecuentes</h2>
+        </div>
+        <div class="min-w-0 lg:col-span-8">
+          <FAQ client:visible />
+        </div>
+      </div>
+    </section>
+
+    <Contacto />
+  </main>
+  <Footer />
+</Layout>
