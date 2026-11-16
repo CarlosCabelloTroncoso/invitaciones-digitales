@@ -1,3 +1,6 @@
+---
+// Página Astro propia para /demos/boda-clasica
+---
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
+  <style is:inline>
     :root {
       --bg-cream: #faf7f2;
       --bg-surface: #ffffff;
@@ -885,12 +888,10 @@
   </style>
 </head>
 <body>
-
-  <!-- Barra de retorno al catálogo -->
   <div style="position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:120;display:flex;align-items:center;gap:10px;background:rgba(43,40,38,0.92);color:#fff;padding:7px 16px;border-radius:999px;font-size:0.78rem;font-weight:500;border:1px solid rgba(194,157,89,0.5);backdrop-filter:blur(8px);white-space:nowrap;">
     <a href="/#catalogo" style="color:#dfc287;text-decoration:none;font-weight:600;">← Catálogo</a>
     <span style="opacity:0.5;">·</span>
-    <span>Demo Boda Sofía & Mateo</span>
+    <span>Demo Boda Sofía &amp; Mateo</span>
   </div>
 
   <!-- Floating Music Toggle (Safe Area for iPhone & Android) -->
@@ -1292,7 +1293,7 @@
     </div>
   </footer>
 
-  <script>
+  <script is:inline>
     // ----------------------------------------------------
     // 1. COUNTDOWN TIMER
     // ----------------------------------------------------

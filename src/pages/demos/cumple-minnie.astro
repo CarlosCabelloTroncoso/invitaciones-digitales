@@ -1,3 +1,6 @@
+---
+// Página Astro propia para /demos/cumple-minnie
+---
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
+<style is:inline>
   :root{
     --pink:#ff5fa2;
     --pink-dark:#e63c86;
@@ -270,7 +273,7 @@
     </div>
   </section>
 
-  <!-- 1.5 MARCO PARA FOTO (Sin foto personal expuesta) -->
+  <!-- 1.5 MARCO PARA FOTO -->
   <section>
     <img class="watermark" src="/demos/cumple-minnie/minnie-lugar.png" alt="" aria-hidden="true">
     <div class="photo-wrap reveal">
@@ -309,7 +312,7 @@
     </div>
   </section>
 
-  <!-- 4. LUGAR (Ubicación de ejemplo en Santiago para cuidar privacidad) -->
+  <!-- 4. LUGAR -->
   <section>
     <img class="corner-minnie" src="/demos/cumple-minnie/minnie-lugar.png" alt="Minnie Mouse" aria-hidden="true">
     <div class="card reveal" style="transition-delay:.1s;z-index:1">
@@ -348,7 +351,7 @@
 
 <footer>Demostración interactiva · Invitaciones Web</footer>
 
-<script>
+<script is:inline>
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
@@ -385,7 +388,7 @@
   onScroll();
 </script>
 
-<script>
+<script is:inline>
   const audio = document.getElementById('musica');
   const musicBtn = document.getElementById('musicBtn');
   audio.volume = 0.85;
