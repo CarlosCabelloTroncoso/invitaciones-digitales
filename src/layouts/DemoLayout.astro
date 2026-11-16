@@ -1,0 +1,71 @@
+---
+import '@/styles/global.css';
+import { SITE } from '@/config';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Invitación digital' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+
+    <a
+      href="/#catalogo"
+      class="surface-raised fixed left-4 top-4 z-50 inline-flex h-8 items-center gap-2 rounded-[8px] px-3 font-mono text-xs text-mist-100 backdrop-blur-md transition-colors hover:bg-ink-600"
+    >
+      <span>← Catálogo · {SITE.nombre}</span>
+    </a>
+
+    <script>
+      const io = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      document.querySelectorAll<HTMLElement>('[data-countdown]').forEach((el) => {
+        const target = new Date(el.dataset.countdown!).getTime();
+        const set = (u: string, v: number) => {
+          const n = el.querySelector(`[data-unit="${u}"]`);
+          if (n) n.textContent = String(v).padStart(2, '0');
+        };
+        const tick = () => {
+          const diff = Math.max(0, target - Date.now());
+          set('d', Math.floor(diff / 864e5));
+          set('h', Math.floor((diff / 36e5) % 24));
+          set('m', Math.floor((diff / 6e4) % 60));
+          set('s', Math.floor((diff / 1e3) % 60));
+        };
+        tick();
+        setInterval(tick, 1000);
+      });
+    </script>
+  </body>
+</html>
