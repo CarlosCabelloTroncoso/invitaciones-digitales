@@ -3,7 +3,7 @@
 
 <section class="paper-grid relative overflow-hidden border-b border-charcoal-900/10 bg-paper-100 pt-22 sm:pt-24">
   <div class="container-x py-12 sm:py-16 lg:py-22">
-    <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+    <div class="grid items-center gap-8 lg:grid-cols-12 lg:gap-10">
       <!-- Propuesta directa a la izquierda (sin kicker genérico) -->
       <div class="min-w-0 lg:col-span-6">
         <h1 class="font-display text-[clamp(2.5rem,6.4vw,4.5rem)] font-normal tracking-[-0.03em] leading-[1.02] text-charcoal-900">
@@ -27,15 +27,15 @@
         </div>
       </div>
 
-      <!-- Demostración tangible en vivo: Sobre 3D de papel algodón blanco/marfil que el usuario puede abrir aquí mismo -->
+      <!-- Demostración tangible en vivo: Sobre 3D con espacio superior reservado para que al abrirse nunca tape los botones -->
       <div class="min-w-0 lg:col-span-6">
-        <div class="relative mx-auto flex max-w-[440px] flex-col items-center">
+        <div class="relative mx-auto flex max-w-[440px] flex-col items-center pt-18 sm:pt-24 lg:pt-16">
           <div class="stage-3d w-full">
             <button
               id="hero-envelope"
               type="button"
               aria-label="Tocar para abrir el sobre de muestra"
-              class="hero-env group relative mx-auto block aspect-[16/11] w-full cursor-pointer select-none text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 focus-visible:ring-offset-4 focus-visible:ring-offset-paper-100"
+              class="hero-env group relative mx-auto block aspect-[16/11] w-[88%] max-w-[380px] cursor-pointer select-none text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 focus-visible:ring-offset-4 focus-visible:ring-offset-paper-100 sm:w-full sm:max-w-[420px]"
             >
               <!-- 1. Cuerpo trasero papel marfil -->
               <div class="hero-env-back absolute inset-0 rounded-[14px] border border-charcoal-900/14 bg-paper-200 shadow-[0_24px_48px_-24px_rgba(18,18,20,0.22)]"></div>
@@ -64,7 +64,7 @@
               <div class="hero-env-bottom pointer-events-none absolute inset-0 rounded-[14px] border-b border-charcoal-900/14 bg-paper-300 [clip-path:polygon(0_100%,50%_46%,100%_100%)]"></div>
 
               <!-- 4. Solapa superior abatible en 3D -->
-              <div class="hero-env-flap pointer-events-none absolute inset-x-0 top-0 h-[56%] origin-top rounded-t-[14px] border-t border-charcoal-900/16 bg-paper-50 [clip-path:polygon(0_0,100%_0,50%_100%)]"></div>
+              <div class="hero-env-flap pointer-events-none absolute inset-x-0 top-0 h-[50%] origin-top rounded-t-[14px] border-t border-charcoal-900/16 bg-paper-50 [clip-path:polygon(0_0,100%_0,50%_100%)]"></div>
 
               <!-- 5. Sello lacre latón -->
               <span class="hero-env-seal absolute left-1/2 top-[52%] flex h-13 w-13 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold-500/60 bg-paper-50 font-display text-base font-normal text-gold-600 shadow-[0_8px_18px_-6px_rgba(18,18,20,0.22)] transition-all sm:h-15 sm:w-15 sm:text-lg">
@@ -117,7 +117,12 @@
     transform: translateZ(18px) scale(0.85);
   }
   .hero-env.is-open .hero-env-card {
-    transform: translateZ(16px) translateY(-30%);
+    transform: translateZ(16px) translateY(-22%);
+  }
+  @media (min-width: 640px) {
+    .hero-env.is-open .hero-env-card {
+      transform: translateZ(16px) translateY(-26%);
+    }
   }
 </style>
 
