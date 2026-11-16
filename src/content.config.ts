@@ -8,7 +8,7 @@ const invitaciones = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/invitaciones' }),
   schema: z.object({
     titulo: z.string(),
-    evento: z.enum(['boda', 'xv', 'baby-shower', 'cumpleanos', 'otro']),
+    evento: z.enum(['boda', 'infantil', 'xv', 'baby-shower', 'cumpleanos', 'otro']),
     plan: z.enum(['basica', 'personalizada', 'premium']),
     precio: z.number().int().positive(),
     descripcion: z.string(),
