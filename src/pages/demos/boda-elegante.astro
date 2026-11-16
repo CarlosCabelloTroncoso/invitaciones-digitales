@@ -1,0 +1,374 @@
+---
+import DemoLayout from '@/layouts/DemoLayout.astro';
+import { SITE } from '@/config';
+
+const datos = {
+  novia: 'Sofía',
+  novio: 'Martín',
+  fechaISO: '2027-03-14T18:00:00-03:00',
+  fechaTxt: 'Domingo 14 de marzo de 2027',
+  ceremonia: {
+    lugar: 'Parroquia San Francisco',
+    hora: '18:00 hrs',
+    direccion: 'Av. Libertador Bernardo O’Higgins 834, Santiago',
+    maps: 'https://maps.google.com/?q=Iglesia+San+Francisco+Santiago',
+  },
+  recepcion: {
+    lugar: 'Casona Las Condes',
+    hora: '20:00 hrs',
+    direccion: 'Camino El Alba 1234, Las Condes',
+    maps: 'https://maps.google.com/?q=Las+Condes+Santiago',
+  },
+  dressCode: 'Tenida formal · Reservado el color blanco para la novia',
+  musica: '',
+  itinerario: [
+    ['18:00', 'Ceremonia religiosa'],
+    ['19:30', 'Cóctel de bienvenida en jardines'],
+    ['21:00', 'Cena principal'],
+    ['22:30', 'Primer baile y fiesta'],
+  ],
+};
+---
+
+<DemoLayout title={`${datos.novia} & ${datos.novio} · Parte de matrimonio`} description={`Invitación a nuestro matrimonio · ${datos.fechaTxt}`}>
+  <!-- Escenario de apertura con sobre 3D interactivo y extracción física del parte -->
+  <div
+    id="sobre"
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center bg-ink-950 px-4 transition-opacity duration-500"
+  >
+    <div id="envelope-stage" class="stage-3d flex flex-col items-center justify-center py-10">
+      <div
+        id="envelope-3d"
+        class="envelope-box relative aspect-[16/11] w-[min(88vw,360px)] cursor-pointer select-none sm:w-[420px]"
+        role="button"
+        tabindex="0"
+        aria-label="Abrir sobre de invitación"
+      >
+        <!-- 1. Pared trasera del sobre -->
+        <div class="env-back absolute inset-0 rounded-xl border border-mist-100/12 bg-ink-900"></div>
+
+        <!-- 2. Pliego interior (sale hacia arriba al abrir el sobre) -->
+        <div
+          id="inner-card"
+          class="env-card absolute inset-x-3.5 bottom-3 top-3 flex flex-col justify-between rounded-lg border border-gold-400/30 bg-ink-800 p-4 text-center sm:inset-x-5 sm:p-5"
+        >
+          <div class="flex items-center justify-between border-b border-mist-100/10 pb-2 font-mono text-[10px] text-mist-400 sm:text-[11px] num">
+            <span>Parte de matrimonio</span>
+            <span>14 · 03 · 2027</span>
+          </div>
+          <div class="my-auto py-2">
+            <p class="font-display text-2xl font-medium tracking-[-0.01em] text-mist-100 sm:text-3xl">
+              {datos.novia} &amp; {datos.novio}
+            </p>
+            <p id="card-guest-preview" class="mt-1 font-mono text-[11px] text-gold-300 num">
+              Familia Pérez · 3 cupos
+            </p>
+          </div>
+          <div class="border-t border-mist-100/10 pt-2 font-mono text-[10px] text-mist-400">
+            Santiago, Chile
+          </div>
+        </div>
+
+        <!-- 3. Bolsillo frontal del sobre (pliegues laterales e inferior en Z superior a la tarjeta) -->
+        <div
+          class="env-pocket-sides pointer-events-none absolute inset-0 rounded-xl border border-mist-100/10 bg-ink-800 [clip-path:polygon(0_0,50%_52%,0_100%,100%_100%,50%_52%,100%_0,100%_100%,0_100%)]"
+        ></div>
+        <div
+          class="env-pocket-bottom pointer-events-none absolute inset-0 rounded-xl border-b border-mist-100/15 bg-ink-700 [clip-path:polygon(0_100%,50%_46%,100%_100%)]"
+        ></div>
+
+        <!-- 4. Solapa superior abatible en 3D -->
+        <div
+          id="top-flap"
+          class="env-flap pointer-events-none absolute inset-x-0 top-0 h-[56%] origin-top rounded-t-xl border-t border-mist-100/20 bg-ink-600 [clip-path:polygon(0_0,100%_0,50%_100%)]"
+        ></div>
+
+        <!-- 5. Sello de lacre en relieve -->
+        <div
+          id="wax-seal"
+          class="env-seal absolute left-1/2 top-[52%] flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold-400/50 bg-ink-900 font-display text-base font-medium text-gold-300 transition-colors hover:border-gold-300 sm:h-16 sm:w-16 sm:text-lg"
+        >
+          <span class=" flex h-11 w-11 items-center justify-center rounded-full border border-gold-400/25 sm:h-12 sm:w-12">
+            S&amp;M
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <p id="sobre-guest" class="mt-2 text-center font-mono text-xs text-gold-300 num">
+      Pase personal · Familia Pérez (3 cupos)
+    </p>
+    <p class="mt-1.5 text-center text-xs text-mist-400">
+      Toca el sello para abrir el sobre
+    </p>
+  </div>
+
+  {datos.musica && <audio id="musica" src={datos.musica} loop preload="none"></audio>}
+
+  <main class="bg-ink-900 text-mist-100">
+    <!-- Portada -->
+    <section class="border-b border-mist-100/8 px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-24">
+      <div class="mx-auto max-w-2xl rounded-2xl border border-mist-100/10 bg-ink-800 p-5 sm:p-12">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-mist-100/8 pb-4">
+          <span class="font-mono text-xs text-mist-400">Parte de matrimonio</span>
+          <span id="pase-badge" class="pass-tag">Pase · Familia Pérez · 3 cupos</span>
+        </div>
+
+        <div class="py-10 text-center sm:py-12">
+          <p class="font-mono text-xs text-mist-300">{datos.fechaTxt}</p>
+          <h1 class="mt-5 font-display text-4xl font-medium tracking-[-0.02em] text-mist-100 sm:text-6xl">
+            {datos.novia} &amp; {datos.novio}
+          </h1>
+          <p class="mx-auto mt-4 max-w-md text-xs leading-relaxed text-mist-300 sm:text-sm">
+            Con alegría invitamos a <strong id="guest-name-inline" class="font-medium text-mist-100">Familia Pérez</strong> a compartir la celebración de nuestro matrimonio.
+          </p>
+        </div>
+
+        <!-- Cuenta regresiva tabular -->
+        <div class="border-t border-mist-100/8 pt-6">
+          <p class="text-center font-mono text-xs text-mist-400">Tiempo restante para la ceremonia</p>
+          <div data-countdown={datos.fechaISO} class="mx-auto mt-4 grid max-w-md grid-cols-4 gap-2 sm:gap-3 num">
+            {['d', 'h', 'm', 's'].map((u, i) => (
+              <div class="rounded-lg border border-mist-100/8 bg-ink-900 py-2.5 text-center sm:py-3">
+                <p data-unit={u} class="font-mono text-xl font-medium text-mist-100 sm:text-2xl">--</p>
+                <p class="mt-0.5 text-[11px] text-mist-400">{['días', 'horas', 'min', 'seg'][i]}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ceremonia y recepción -->
+    <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
+      <p class="section-label">Coordenadas del día</p>
+      <h2 class="title mt-2">Ceremonia y recepción</h2>
+      <div class="mt-8 grid gap-5 sm:gap-6 md:grid-cols-2">
+        {[
+          ['Ceremonia religiosa', datos.ceremonia],
+          ['Recepción y fiesta', datos.recepcion],
+        ].map(([t, l]: any) => (
+          <article class="reveal card flex flex-col justify-between p-5 sm:p-6">
+            <div>
+              <div class="flex items-center justify-between gap-2 font-mono text-xs">
+                <span class="text-gold-400">{t}</span>
+                <span class="text-mist-300 num">{l.hora}</span>
+              </div>
+              <h3 class="mt-3 font-display text-2xl font-medium text-mist-100">{l.lugar}</h3>
+              <p class="mt-1.5 text-xs leading-relaxed text-mist-300">{l.direccion}</p>
+            </div>
+            <a href={l.maps} target="_blank" rel="noopener" class="btn-ghost mt-6 w-full text-xs">
+              Abrir ubicación en Google Maps
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Itinerario y Dress code -->
+    <section class="border-y border-mist-100/8 bg-ink-950 py-16 sm:py-20">
+      <div class="mx-auto grid max-w-3xl gap-8 px-4 sm:px-6 md:grid-cols-12 md:gap-10">
+        <div class="md:col-span-5">
+          <p class="section-label">Programa</p>
+          <h2 class="title mt-2">Horarios de la jornada</h2>
+          <div class="mt-6 rounded-xl border border-mist-100/8 bg-ink-900 p-5">
+            <p class="font-mono text-xs text-gold-400">Código de vestimenta</p>
+            <p class="mt-2 text-xs leading-relaxed text-mist-100">{datos.dressCode}</p>
+          </div>
+        </div>
+
+        <ol class="divide-y divide-mist-100/8 rounded-xl border border-mist-100/8 bg-ink-900 md:col-span-7">
+          {datos.itinerario.map(([h, t]) => (
+            <li class="flex items-center justify-between gap-4 px-4 py-4 text-xs sm:px-5 sm:text-sm">
+              <span class="text-mist-100">{t}</span>
+              <span class="shrink-0 font-mono text-gold-300 num">{h} hrs</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Confirmación con control de cupos asignados -->
+    <section class="mx-auto max-w-xl px-4 py-16 pb-[max(4rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-20">
+      <div class="rounded-2xl border border-mist-100/12 bg-ink-800 p-5 sm:p-8">
+        <span class="pass-tag">Confirmación nominal de asistencia</span>
+        <h2 class="mt-4 font-display text-2xl font-medium text-mist-100 sm:text-3xl">
+          Confirmar cupos reservados
+        </h2>
+        <p class="mt-2 text-xs leading-relaxed text-mist-300">
+          Pase asignado a <strong id="rsvp-guest-name" class="font-medium text-mist-100">Familia Pérez</strong>. Por favor confirma antes del 14 de febrero indicando cuántos de tus cupos utilizarán.
+        </p>
+
+        <form id="rsvp-form" class="mt-6 space-y-4" data-wa={SITE.whatsapp}>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="rsvp-cupos" class="block text-xs text-mist-300">Asistentes que confirman</label>
+              <select
+                id="rsvp-cupos"
+                class="mt-1.5 h-10 w-full rounded-lg border border-mist-100/12 bg-ink-900 px-3 font-mono text-base text-mist-100 outline-none focus:border-gold-400 sm:text-xs num"
+              >
+                <option value="3">3 de 3 cupos</option>
+                <option value="2">2 de 3 cupos</option>
+                <option value="1">1 de 3 cupos</option>
+                <option value="0">No podremos asistir</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="rsvp-menu" class="block text-xs text-mist-300">Preferencia alimentaria</label>
+              <select
+                id="rsvp-menu"
+                class="mt-1.5 h-10 w-full rounded-lg border border-mist-100/12 bg-ink-900 px-3 text-base text-mist-100 outline-none focus:border-gold-400 sm:text-xs"
+              >
+                <option value="Menú estándar">Menú estándar</option>
+                <option value="1 menú vegetariano">Incluye vegetariano</option>
+                <option value="Sin gluten / celíaco">Sin gluten / celíaco</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary w-full text-xs">
+            Enviar confirmación de cupos
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</DemoLayout>
+
+<style>
+  .envelope-box {
+    transform-style: preserve-3d;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .env-back {
+    transform: translateZ(0px);
+  }
+  .env-card {
+    transform: translateZ(4px) translateY(0%);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .env-pocket-sides {
+    transform: translateZ(10px);
+  }
+  .env-pocket-bottom {
+    transform: translateZ(11px);
+  }
+  .env-flap {
+    transform: translateZ(13px) rotateX(0deg);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .env-seal {
+    transform: translateZ(18px);
+    transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1), transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Secuencia de apertura 3D: 1) solapa gira 180°, 2) pliego interior sube fuera del sobre */
+  #sobre.abierto .env-flap {
+    transform: translateZ(2px) rotateX(180deg);
+  }
+  #sobre.abierto .env-seal {
+    opacity: 0;
+    transform: translateZ(18px) scale(0.88);
+  }
+  #sobre.abierto.extraer .env-card {
+    transform: translateZ(16px) translateY(-48%);
+  }
+</style>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const invitado = params.get('invitado') || 'Familia Pérez';
+  const cuposMax = Math.min(10, Math.max(1, Number(params.get('cupos')) || 3));
+  const cupoPalabra = cuposMax === 1 ? 'cupo' : 'cupos';
+
+  const badge = document.getElementById('pase-badge');
+  const sobreGuest = document.getElementById('sobre-guest');
+  const cardGuestPreview = document.getElementById('card-guest-preview');
+  const inlineName = document.getElementById('guest-name-inline');
+  const rsvpName = document.getElementById('rsvp-guest-name');
+  const selectCupos = document.getElementById('rsvp-cupos') as HTMLSelectElement | null;
+
+  if (badge) badge.textContent = `Pase · ${invitado} · ${cuposMax} ${cupoPalabra}`;
+  if (sobreGuest) sobreGuest.textContent = `Pase personal · ${invitado} (${cuposMax} ${cupoPalabra})`;
+  if (cardGuestPreview) cardGuestPreview.textContent = `${invitado} · ${cuposMax} ${cupoPalabra}`;
+  if (inlineName) inlineName.textContent = invitado;
+  if (rsvpName) rsvpName.textContent = invitado;
+
+  if (selectCupos) {
+    selectCupos.innerHTML = '';
+    for (let i = cuposMax; i >= 1; i--) {
+      const opt = document.createElement('option');
+      opt.value = String(i);
+      opt.textContent = `${i} de ${cuposMax} ${cupoPalabra}`;
+      selectCupos.appendChild(opt);
+    }
+    const noOpt = document.createElement('option');
+    noOpt.value = '0';
+    noOpt.textContent = 'No podremos asistir';
+    selectCupos.appendChild(noOpt);
+  }
+
+  const form = document.getElementById('rsvp-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const wa = form.dataset.wa || '';
+    const cuposVal = (document.getElementById('rsvp-cupos') as HTMLSelectElement).value;
+    const menuVal = (document.getElementById('rsvp-menu') as HTMLSelectElement).value;
+    const msg =
+      cuposVal === '0'
+        ? `Hola Sofía y Martín, somos ${invitado}. Lamentablemente no podremos asistir.`
+        : `Hola Sofía y Martín, confirmamos asistencia de ${invitado}: ${cuposVal} de ${cuposMax} ${cupoPalabra} (${menuVal}).`;
+    window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  });
+
+  // Inclinación 3D interactiva del sobre en pantallas con puntero fino
+  const envBox = document.getElementById('envelope-3d');
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (envBox && canHover) {
+    envBox.addEventListener('pointermove', (e) => {
+      if (document.getElementById('sobre')?.classList.contains('abierto')) return;
+      const rect = envBox.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      envBox.style.transform = `rotateX(${(-py * 10).toFixed(2)}deg) rotateY(${(px * 12).toFixed(2)}deg)`;
+    });
+    envBox.addEventListener('pointerleave', () => {
+      envBox.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  }
+
+  // Apertura en 2 tiempos: 1) abrir solapa en 3D, 2) extraer el parte hacia arriba
+  const sobre = document.getElementById('sobre')!;
+  const audio = document.getElementById('musica') as HTMLAudioElement | null;
+  document.body.style.overflow = 'hidden';
+
+  const abrirSobre = () => {
+    if (sobre.classList.contains('abierto')) return;
+    if (envBox) envBox.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    sobre.classList.add('abierto');
+    audio?.play().catch(() => {});
+
+    setTimeout(() => {
+      sobre.classList.add('extraer');
+    }, 320);
+
+    setTimeout(() => {
+      sobre.style.opacity = '0';
+      document.body.style.overflow = '';
+    }, 1150);
+
+    setTimeout(() => {
+      sobre.remove();
+    }, 1650);
+  };
+
+  sobre.addEventListener('click', abrirSobre);
+  envBox?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      abrirSobre();
+    }
+  });
+</script>

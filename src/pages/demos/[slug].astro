@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import DemoLayout from '@/layouts/DemoLayout.astro';
+import { SITE } from '@/config';
+
+export async function getStaticPaths() {
+  const items = await getCollection('invitaciones', ({ data }) => !data.demoPropia);
+  return items.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { titulo, colores, caracteristicas, evento } = entry.data;
+const [bg, accent] = colores;
+
+const fecha = new Date(Date.now() + 90 * 864e5);
+fecha.setHours(19, 0, 0, 0);
+const fechaTxt = fecha.toLocaleDateString('es-CL', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const encabezado: Record<string, string> = {
+  boda: 'Parte de matrimonio',
+  xv: 'Celebración de XV años',
+  'baby-shower': 'Invitación a baby shower',
+  cumpleanos: 'Celebración de cumpleaños',
+  otro: 'Invitación al evento',
+};
+const rsvp = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola, confirmo mi asistencia (${titulo})`)}`;
+---
+
+<DemoLayout title={`${titulo} · Demo`}>
+  <main style={`--bg:${bg};--ac:${accent}`} class="min-h-screen bg-[var(--bg)] px-6 py-24 text-[var(--ac)]">
+    <div class="mx-auto max-w-xl rounded-2xl border border-[var(--ac)]/25 p-8 sm:p-12">
+      <div class="flex items-center justify-between border-b border-[var(--ac)]/20 pb-4 font-mono text-xs opacity-80">
+        <span>{encabezado[evento]}</span>
+        <span class="num">19:00 hrs</span>
+      </div>
+
+      <div class="py-12 text-center">
+        <h1 class="font-display text-4xl font-medium tracking-[-0.02em] sm:text-5xl">{titulo}</h1>
+        <p class="mt-3 text-xs capitalize opacity-80">{fechaTxt}</p>
+
+        <div data-countdown={fecha.toISOString()} class="mx-auto mt-10 grid max-w-sm grid-cols-4 gap-2.5 num">
+          {['d', 'h', 'm', 's'].map((u, i) => (
+            <div class="rounded-lg border border-[var(--ac)]/25 py-3">
+              <p data-unit={u} class="font-mono text-2xl font-medium">--</p>
+              <p class="text-[11px] opacity-75">{['días', 'horas', 'min', 'seg'][i]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="border-t border-[var(--ac)]/20 pt-6">
+        <h2 class="font-mono text-xs opacity-75">Secciones incluidas en este modelo</h2>
+        <ul class="mt-4 space-y-2 text-xs">
+          {caracteristicas.map((c) => (
+            <li class="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <span>{c}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-8">
+          <a
+            href={rsvp}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex h-10 w-full items-center justify-center rounded-lg border border-[var(--ac)]/40 px-4 text-xs font-medium transition-colors hover:bg-[var(--ac)] hover:text-[var(--bg)]"
+          >
+            Confirmar asistencia por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</DemoLayout>
