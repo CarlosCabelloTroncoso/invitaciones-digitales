@@ -31,14 +31,11 @@ const items = (await getCollection('invitaciones'))
   <main>
     <Hero />
 
-    <section id="catalogo" class="py-16 sm:py-20">
+    <section id="catalogo" class="bg-paper-100 py-16 sm:py-22">
       <div class="container-x">
         <div class="reveal flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
-          <div>
-            <p class="section-label">Catálogo</p>
-            <h2 class="title mt-2">Elige tu invitación</h2>
-          </div>
-          <p class="text-xs text-mist-400">Prueba la demo en vivo o pídela directo por WhatsApp</p>
+          <h2 class="title">Elige tu invitación</h2>
+          <p class="text-xs text-charcoal-600 sm:text-sm">Prueba la demo en vivo o pídela directo por WhatsApp</p>
         </div>
         <div class="mt-8">
           <Catalogo client:visible items={items} whatsapp={SITE.whatsapp} />
@@ -48,11 +45,10 @@ const items = (await getCollection('invitaciones'))
 
     <Planes />
 
-    <section id="faq" class="border-t border-mist-100/8 py-16 sm:py-20">
+    <section id="faq" class="border-t border-charcoal-900/10 bg-paper-100 py-16 sm:py-22">
       <div class="container-x grid gap-8 lg:grid-cols-12 lg:gap-12">
         <div class="reveal min-w-0 lg:col-span-4">
-          <p class="section-label">Dudas rápidas</p>
-          <h2 class="title mt-2">Preguntas frecuentes</h2>
+          <h2 class="title">Preguntas frecuentes</h2>
         </div>
         <div class="min-w-0 lg:col-span-8">
           <FAQ client:visible />

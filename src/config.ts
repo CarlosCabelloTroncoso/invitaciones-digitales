@@ -2,8 +2,8 @@
 export const SITE = {
   nombre: 'Invitaciones Web',
   dominio: 'tudominio.cl',
-  // Versiones sin ".cl": '/logo-sin-cl-dark-gold.png' (champagne) o '/logo-sin-cl-dark.png' (azul índigo)
-  logo: '/logo-sin-cl-dark-gold.png',
+  // Versiones sin ".cl": '/logo-sin-cl-light.png' (para fondo blanco) o '/logo-sin-cl-dark-gold.png' (para fondo oscuro)
+  logo: '/logo-sin-cl-light.png',
   descripcion:
     'Invitaciones web para bodas, XV años, baby shower y cumpleaños en Chile, con confirmación de asistencia y control de cupos.',
   // Formato internacional sin "+" ni espacios (Chile: 569XXXXXXXX)

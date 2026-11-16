@@ -15,8 +15,8 @@ const faqs = [
     a: 'Actualizamos el dato en la página y el link sigue siendo el mismo, así que todos tus invitados ven la información corregida sin reenviar nada.',
   },
   {
-    q: '¿Conviene más que imprimir invitaciones en papel?',
-    a: 'Imprimir 100 partes en Chile cuesta entre $150.000 y $400.000 CLP y tarda semanas. La invitación digital cuesta desde $9.990 CLP, incluye mapa GPS y confirmación de asistencia en un toque.',
+    q: '¿Incluye mapa y confirmación por WhatsApp?',
+    a: 'Sí, todos los planes incluyen mapa con ubicación exacta para llegar directo y botón de confirmación de asistencia.',
   },
   {
     q: '¿Cómo se paga?',
@@ -28,7 +28,7 @@ export default function FAQ() {
   const [abierto, setAbierto] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-mist-100/8 border-y border-mist-100/8">
+    <div className="divide-y divide-charcoal-900/10 border-y border-charcoal-900/10">
       {faqs.map((f, i) => {
         const open = abierto === i;
         return (
@@ -36,20 +36,20 @@ export default function FAQ() {
             <button
               onClick={() => setAbierto(open ? null : i)}
               aria-expanded={open}
-              className="flex w-full items-center justify-between gap-6 py-4 text-left transition-colors hover:text-mist-100"
+              className="flex w-full items-center justify-between gap-6 py-4 text-left transition-colors hover:text-charcoal-900"
             >
-              <span className={`text-sm font-medium transition-colors sm:text-base ${open ? 'text-mist-100' : 'text-mist-300'}`}>
+              <span className={`text-sm font-medium transition-colors sm:text-base ${open ? 'text-charcoal-900' : 'text-charcoal-600'}`}>
                 {f.q}
               </span>
-              <span className="surface-raised flex h-7 w-7 shrink-0 items-center justify-center rounded-[6px] text-mist-400">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[6px] border border-charcoal-900/12 bg-paper-50 text-charcoal-600">
                 <svg
                   width="15"
                   height="15"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="1.5"
-                  className={`transition-transform duration-150 ${open ? 'rotate-45 text-gold-400' : ''}`}
+                  strokeWidth="1.6"
+                  className={`transition-transform duration-150 ${open ? 'rotate-45 text-indigo-900' : ''}`}
                   aria-hidden="true"
                 >
                   <path d="M12 5v14M5 12h14" />
@@ -65,7 +65,7 @@ export default function FAQ() {
                   transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="pb-4 pr-8 text-xs leading-5 text-mist-300 sm:text-sm num">
+                  <p className="pb-4 pr-8 text-xs leading-5 text-charcoal-600 sm:text-sm sm:leading-6 num">
                     {f.a}
                   </p>
                 </motion.div>

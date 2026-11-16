@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Rampa oscura exacta de tokens.md ajustada a obsidiana profunda (#0b0b0d) */
+  /* Paleta Blanca Editorial "Atelier" — papeles luminosos y tinta carbón */
+  --color-paper-50: #ffffff;
+  --color-paper-100: #fcfbf8;
+  --color-paper-200: #f4f1ea;
+  --color-paper-300: #e9e3d7;
+
+  /* Mantenemos alias oscuros para compatibilidad con DemoLayout y /demos/boda-elegante */
   --color-ink-950: #070709;
   --color-ink-900: #0b0b0d;
   --color-ink-800: #131316;
@@ -9,18 +15,26 @@
   --color-ink-600: #24242b;
   --color-ink-500: #32323b;
 
-  /* Tres roles de texto (tokens.md) */
+  /* Tintas editoriales sobre blanco (contraste >= 4.5:1) */
+  --color-charcoal-900: #121214;
+  --color-charcoal-700: #3c3a35;
+  --color-charcoal-600: #57534c;
+  --color-charcoal-400: #7a756c;
+
+  /* Alias mist para demos oscuras */
   --color-mist-100: #efe9de;
   --color-mist-300: #a6a096;
   --color-mist-400: #7e7970;
 
-  /* Un solo acento (latón cálido), usado solo en momentos clave */
+  /* Acentos de marca: Índigo del logo + Latón cálido */
+  --color-indigo-900: #231f6b;
+  --color-indigo-700: #352f8c;
   --color-gold-300: #e5cda4;
-  --color-gold-400: #d4b483;
-  --color-gold-500: #b59461;
-  --color-gold-600: #876b3f;
+  --color-gold-400: #b89151;
+  --color-gold-500: #967237;
+  --color-gold-600: #6e5224;
 
-  /* Familias de tokens.md: Instrument Sans (UI) + Instrument Serif (Headlines) + JetBrains Mono (cifras/meta) */
+  /* Tipografía de autor */
   --font-display: "Instrument Serif", Georgia, serif;
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
@@ -34,20 +48,24 @@
     text-size-adjust: 100%;
   }
   body {
-    background-color: var(--color-ink-900);
-    color: var(--color-mist-100);
+    background-color: var(--color-paper-100);
+    color: var(--color-charcoal-900);
     font-family: var(--font-sans);
     font-size: 15px;
-    line-height: 22px;
+    line-height: 23px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
     min-width: 320px;
+    accent-color: var(--color-indigo-900);
   }
   ::selection {
-    background-color: var(--color-ink-600);
-    color: var(--color-mist-100);
+    background-color: var(--color-paper-300);
+    color: var(--color-charcoal-900);
+  }
+  a {
+    text-underline-offset: 3px;
   }
 }
 
@@ -63,27 +81,33 @@
       padding-right: max(2rem, env(safe-area-inset-right, 0px));
     }
   }
-  /* Etiqueta meta: 12px/16px, tracking 0.01em, sin uppercase (tokens.md) */
-  .section-label {
-    @apply font-mono text-xs leading-4 tracking-[0.01em] text-mist-400;
-  }
-  /* Page title fluida desde 320px hasta monitores grandes */
+
   .title {
-    @apply font-display font-normal tracking-[-0.02em] leading-[1.1] text-mist-100;
-    font-size: clamp(1.85rem, 4.2vw, 2.75rem);
+    @apply font-display font-normal tracking-[-0.025em] leading-[1.06] text-charcoal-900;
+    font-size: clamp(2rem, 4.5vw, 3rem);
   }
-  /* Botones hero 44px, radio 9px, con highlight superior sutil (tokens.md) */
+
+  /* Botones táctiles con elevación real y foco accesible */
   .btn-primary {
-    @apply inline-flex h-11 items-center justify-center gap-2 rounded-[9px] bg-mist-100 px-5 text-sm font-medium text-ink-900 transition-colors duration-150 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-[0.98];
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-[9px] bg-charcoal-900 px-5 text-sm font-medium text-paper-50 transition-all duration-150 hover:bg-indigo-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100 active:scale-[0.98];
+    box-shadow: 0 8px 20px -10px rgba(18, 18, 20, 0.38);
     touch-action: manipulation;
   }
   .btn-ghost {
-    @apply inline-flex h-11 items-center justify-center gap-2 rounded-[9px] border border-mist-100/10 bg-ink-700 px-5 text-sm font-medium text-mist-100 transition-colors duration-150 hover:border-mist-100/20 hover:bg-ink-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-[0.98];
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-[9px] border border-charcoal-900/14 bg-paper-50 px-5 text-sm font-medium text-charcoal-900 transition-all duration-150 hover:border-charcoal-900/30 hover:bg-paper-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100 active:scale-[0.98];
     touch-action: manipulation;
   }
-  /* Tarjeta con borde hairline al 8% y radio 14px */
+
+  /* Pliego de papel blanco con sombra real y borde 1px sutil */
+  .sheet {
+    @apply min-w-0 rounded-[14px] border border-charcoal-900/10 bg-paper-50;
+    box-shadow: 0 14px 36px -22px rgba(18, 18, 20, 0.14);
+  }
+  .sheet-ivory {
+    @apply min-w-0 rounded-[14px] border border-charcoal-900/12 bg-paper-200;
+  }
+
+  /* Clases heredadas para /demos/boda-elegante */
   .card {
     @apply min-w-0 rounded-[14px] border border-mist-100/8 bg-ink-800;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -92,18 +116,16 @@
     @apply border border-mist-100/10 bg-ink-700;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
   }
-  .hairline {
-    @apply border-mist-100/8;
+  .section-label {
+    @apply font-mono text-xs leading-4 tracking-[0.01em] text-charcoal-400;
   }
   .num {
     font-variant-numeric: tabular-nums;
   }
   .pass-tag {
-    @apply inline-flex max-w-full items-center gap-2 rounded-[6px] border border-mist-100/10 bg-ink-800 px-2.5 py-1 font-mono text-xs leading-4 text-mist-300;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    @apply inline-flex max-w-full items-center gap-2 rounded-[6px] border border-charcoal-900/12 bg-paper-200 px-2.5 py-1 font-mono text-xs leading-4 text-charcoal-700;
     font-variant-numeric: tabular-nums;
   }
-  /* Ocultar barra de scroll manteniendo desplazamiento táctil */
   .no-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -113,13 +135,14 @@
   }
 }
 
-/* Máscara suave para fundir la escena generada con el fondo #0b0b0d (visuals.md) */
-.scene-mask {
-  mask-image: radial-gradient(ellipse 88% 82% at 70% 45%, #000 45%, transparent 96%);
-  -webkit-mask-image: radial-gradient(ellipse 88% 82% at 70% 45%, #000 45%, transparent 96%);
+/* Textura arquitectónica sutil para papel blanco */
+.paper-grid {
+  background-image:
+    linear-gradient(to right, rgba(18, 18, 20, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 18, 20, 0.028) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-/* Perspectiva y capas 3D */
 .stage-3d {
   perspective: 1300px;
 }
@@ -128,17 +151,11 @@
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
-.layer-z-10 {
-  transform: translateZ(14px);
-}
-.layer-z-20 {
-  transform: translateZ(26px);
-}
 
 .reveal {
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.is-visible {
   opacity: 1;

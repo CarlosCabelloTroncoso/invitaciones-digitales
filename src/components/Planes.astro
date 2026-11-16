@@ -37,41 +37,37 @@ const planes = [
 ];
 ---
 
-<section id="planes" class="border-t border-mist-100/8 py-16 sm:py-20">
+<section id="planes" class="border-t border-charcoal-900/10 bg-paper-100 py-16 sm:py-22">
   <div class="container-x">
     <div class="reveal flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
-      <div>
-        <p class="section-label">Precios</p>
-        <h2 class="title mt-2">Planes de pago único</h2>
-      </div>
-      <p class="text-xs text-mist-400">
-        Frente a $150.000+ en invitaciones impresas · Entrega en 48 h
+      <h2 class="title">Planes de pago único</h2>
+      <p class="text-xs text-charcoal-600 sm:text-sm">
+        Entrega en 48 horas hábiles · Sin mensualidades
       </p>
     </div>
 
-    <!-- 1 col en móvil, 2 cols en iPad vertical (la 3ra ocupa el ancho completo sin quedar huérfana) y 3 cols en escritorio -->
-    <div class="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-      {planes.map((p, idx) => (
+    <!-- Pliego unificado dividido por líneas finas (sin tarjetas repetitivas) -->
+    <div class="sheet reveal mt-8 grid divide-y divide-charcoal-900/10 overflow-hidden md:grid-cols-3 md:divide-x md:divide-y-0">
+      {planes.map((p) => (
         <article
           class:list={[
-            'reveal flex min-w-0 flex-col justify-between rounded-[14px] p-5 sm:p-6',
-            p.destacado ? 'surface-raised' : 'card',
-            idx === 2 ? 'sm:col-span-2 lg:col-span-1' : '',
+            'flex min-w-0 flex-col justify-between p-6 sm:p-8',
+            p.destacado ? 'bg-paper-200/80' : 'bg-paper-50',
           ]}
         >
           <div>
             <div class="flex items-center justify-between gap-2">
-              <h3 class="text-base font-medium text-mist-100">{p.nombre}</h3>
-              {p.destacado && <span class="pass-tag text-gold-300">Más elegido</span>}
+              <h3 class="font-display text-2xl text-charcoal-900">{p.nombre}</h3>
+              {p.destacado && <span class="pass-tag text-indigo-900">Más elegido</span>}
             </div>
 
-            <p class="mt-3 font-mono text-[28px] font-medium leading-none text-mist-100 num">{clp(p.precio)}</p>
-            <p class="mt-2 text-xs text-mist-300">{p.desc}</p>
+            <p class="mt-3 font-mono text-[28px] font-medium leading-none text-charcoal-900 num">{clp(p.precio)}</p>
+            <p class="mt-2 text-xs text-charcoal-600">{p.desc}</p>
 
-            <ul class="mt-5 space-y-2 border-t border-mist-100/8 pt-4 text-xs text-mist-100">
+            <ul class="mt-6 space-y-2.5 border-t border-charcoal-900/10 pt-5 text-xs text-charcoal-700">
               {p.items.map((it) => (
                 <li class="flex items-start gap-2">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mt-0.5 w-4 shrink-0 text-gold-400" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="mt-0.5 w-4 shrink-0 text-gold-500" aria-hidden="true">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                   <span>{it}</span>
@@ -84,7 +80,7 @@ const planes = [
             href={waLink(`Hola, quiero el plan ${p.nombre} (${clp(p.precio)})`)}
             target="_blank"
             rel="noopener"
-            class={p.destacado ? 'btn-primary mt-6 h-10 w-full text-xs' : 'btn-ghost mt-6 h-10 w-full text-xs'}
+            class={p.destacado ? 'btn-primary mt-7 h-10 w-full text-xs' : 'btn-ghost mt-7 h-10 w-full text-xs'}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="shrink-0" aria-hidden="true">
               <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zm-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z" />

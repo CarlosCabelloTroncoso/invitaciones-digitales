@@ -10,9 +10,9 @@ const links = [
 
 <header
   id="site-header"
-  class="fixed inset-x-0 top-0 z-50 border-b border-mist-100/8 bg-ink-900/92 pt-[env(safe-area-inset-top)] backdrop-blur-md"
+  class="fixed inset-x-0 top-0 z-50 border-b border-charcoal-900/8 bg-paper-100/92 pt-[env(safe-area-inset-top)] backdrop-blur-md"
 >
-  <nav class="container-x flex h-15 items-center justify-between gap-3" aria-label="Navegación principal">
+  <nav class="container-x flex h-16 items-center justify-between gap-3" aria-label="Navegación principal">
     <a href="/" class="flex shrink-0 items-center py-1" aria-label={SITE.nombre}>
       <img
         src={SITE.logo}
@@ -24,10 +24,10 @@ const links = [
     </a>
 
     <!-- Enlaces de escritorio (md y superior) -->
-    <ul class="hidden items-center gap-7 text-sm text-mist-300 md:flex">
+    <ul class="hidden items-center gap-8 text-sm font-medium text-charcoal-600 md:flex">
       {links.map((l) => (
         <li>
-          <a href={l.href} data-nav-link class="py-1.5 transition-colors duration-150 hover:text-mist-100">
+          <a href={l.href} data-nav-link class="py-1.5 transition-colors duration-150 hover:text-charcoal-900">
             {l.label}
           </a>
         </li>
@@ -38,7 +38,7 @@ const links = [
     <div class="flex shrink-0 items-center gap-2 sm:gap-3">
       <a
         href="/demos/boda-elegante/"
-        class="hidden text-xs text-mist-300 transition-colors hover:text-mist-100 md:inline"
+        class="hidden text-xs font-medium text-charcoal-600 transition-colors hover:text-indigo-900 md:inline"
       >
         Demo 3D
       </a>
@@ -46,7 +46,7 @@ const links = [
         href={waLink()}
         target="_blank"
         rel="noopener"
-        class="btn-primary h-9 px-3 text-xs sm:px-3.5"
+        class="btn-primary h-9 px-3.5 text-xs"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="shrink-0" aria-hidden="true">
           <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zm-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z" />
@@ -61,7 +61,7 @@ const links = [
         aria-label="Abrir menú de navegación"
         aria-expanded="false"
         aria-controls="mobile-menu"
-        class="surface-raised flex h-9 w-9 items-center justify-center rounded-[9px] text-mist-100 transition-colors hover:bg-ink-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 md:hidden"
+        class="flex h-9 w-9 items-center justify-center rounded-[9px] border border-charcoal-900/14 bg-paper-50 text-charcoal-900 transition-colors hover:bg-paper-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 md:hidden"
       >
         <svg id="icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16" />
@@ -76,19 +76,19 @@ const links = [
   <!-- Panel desplegable del menú hamburguesa -->
   <div
     id="mobile-menu"
-    class="hidden border-t border-mist-100/8 bg-ink-900/98 backdrop-blur-xl md:hidden"
+    class="hidden border-t border-charcoal-900/8 bg-paper-100/98 backdrop-blur-xl md:hidden"
   >
     <div class="container-x py-3">
-      <ul class="divide-y divide-mist-100/8">
+      <ul class="divide-y divide-charcoal-900/8">
         {links.map((l) => (
           <li>
             <a
               href={l.href}
               data-nav-link
-              class="flex h-12 items-center justify-between text-sm font-medium text-mist-100 transition-colors hover:text-gold-300"
+              class="flex h-12 items-center justify-between text-sm font-medium text-charcoal-900 transition-colors hover:text-indigo-900"
             >
               <span>{l.label}</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-mist-400" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-charcoal-400" aria-hidden="true">
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </a>
@@ -97,7 +97,7 @@ const links = [
         <li>
           <a
             href="/demos/boda-elegante/"
-            class="flex h-12 items-center justify-between text-sm font-medium text-gold-300 transition-colors hover:text-gold-400"
+            class="flex h-12 items-center justify-between text-sm font-medium text-indigo-900 transition-colors hover:text-indigo-700"
           >
             <span>Probar Demo Sobre 3D</span>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -132,7 +132,6 @@ const links = [
     iconClose?.classList.toggle('hidden', isHidden);
   });
 
-  // Navegación suave por secciones sin dejar #hash pegado en la URL (evita que al refrescar baje solo)
   document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       const targetId = anchor.getAttribute('href');

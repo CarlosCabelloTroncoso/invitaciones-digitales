@@ -1,46 +1,134 @@
 ---
 ---
 
-<section class="relative flex min-h-[76svh] items-center overflow-hidden border-b border-mist-100/8 bg-ink-900 pt-15 sm:min-h-[80svh]">
-  <!-- Fotografía de estudio a la derecha, fundida con máscara suave -->
-  <div class="pointer-events-none absolute inset-0">
-    <img
-      src="/visuals/hero-scene.jpg"
-      alt="Sobre de papel algodón negro con sello de lacre en latón y tarjeta marfil"
-      width="1600"
-      height="900"
-      fetchpriority="high"
-      class="scene-mask h-full w-full object-cover object-[70%_center] opacity-85 sm:object-right sm:opacity-90"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/75 to-ink-900/35 sm:bg-gradient-to-r sm:from-ink-900 sm:via-ink-900/80 sm:to-transparent lg:via-ink-900/45"></div>
-    <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink-900 to-transparent"></div>
-  </div>
+<section class="paper-grid relative overflow-hidden border-b border-charcoal-900/10 bg-paper-100 pt-22 sm:pt-24">
+  <div class="container-x py-12 sm:py-16 lg:py-22">
+    <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+      <!-- Propuesta directa a la izquierda (sin kicker genérico) -->
+      <div class="min-w-0 lg:col-span-6">
+        <h1 class="font-display text-[clamp(2.5rem,6.4vw,4.5rem)] font-normal tracking-[-0.03em] leading-[1.02] text-charcoal-900">
+          Invitaciones digitales que se abren como un <em class="italic text-indigo-900">sobre real</em>
+        </h1>
 
-  <div class="container-x relative py-14 sm:py-22 lg:py-26">
-    <div class="max-w-[580px]">
-      <p class="font-mono text-xs text-gold-400 num">
-        Desde $9.990 CLP · Entrega en 48 horas
-      </p>
+        <p class="mt-5 max-w-[31rem] text-sm leading-6 text-charcoal-600 sm:text-base sm:leading-7">
+          Diseños interactivos con sobre 3D, mapa con ubicación exacta y confirmación de asistencia en un solo link. Desde <span class="font-mono font-medium text-charcoal-900 num">$9.990 CLP</span>, listas en 48 horas.
+        </p>
 
-      <h1 class="mt-3.5 font-display text-[clamp(2.25rem,6.5vw,4.15rem)] font-normal tracking-[-0.03em] leading-[1.04] text-mist-100">
-        Invitaciones digitales para bodas y eventos
-      </h1>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a href="#catalogo" class="btn-primary w-full sm:w-auto">
+            Ver catálogo
+          </a>
+          <a href="/demos/boda-elegante/" class="btn-ghost w-full sm:w-auto">
+            <span>Probar demo 3D</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
+        </div>
+      </div>
 
-      <p class="mt-4 max-w-[30rem] text-sm leading-relaxed text-mist-300 sm:text-base">
-        Diseños interactivos con sobre 3D, mapa con ubicación exacta y confirmación de asistencia en un solo link.
-      </p>
+      <!-- Demostración tangible en vivo: Sobre 3D de papel algodón blanco/marfil que el usuario puede abrir aquí mismo -->
+      <div class="min-w-0 lg:col-span-6">
+        <div class="relative mx-auto flex max-w-[440px] flex-col items-center">
+          <div class="stage-3d w-full">
+            <button
+              id="hero-envelope"
+              type="button"
+              aria-label="Tocar para abrir el sobre de muestra"
+              class="hero-env group relative mx-auto block aspect-[16/11] w-full cursor-pointer select-none text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-900 focus-visible:ring-offset-4 focus-visible:ring-offset-paper-100"
+            >
+              <!-- 1. Cuerpo trasero papel marfil -->
+              <div class="hero-env-back absolute inset-0 rounded-[14px] border border-charcoal-900/14 bg-paper-200 shadow-[0_24px_48px_-24px_rgba(18,18,20,0.22)]"></div>
 
-      <div class="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
-        <a href="#catalogo" class="btn-primary w-full sm:w-auto">
-          Ver catálogo
-        </a>
-        <a href="/demos/boda-elegante/" class="btn-ghost w-full sm:w-auto">
-          <span>Probar demo 3D</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-mist-300" aria-hidden="true">
-            <path d="M7 17 17 7M9 7h8v8" />
-          </svg>
-        </a>
+              <!-- 2. Pliego interior blanco que se extrae al tocar -->
+              <div class="hero-env-card absolute inset-x-4 bottom-3 top-3 flex flex-col justify-between rounded-[10px] border border-gold-400/45 bg-paper-50 p-4 text-center shadow-[0_10px_24px_-12px_rgba(18,18,20,0.16)] sm:inset-x-6 sm:p-5">
+                <div class="flex items-center justify-between border-b border-charcoal-900/10 pb-2 font-mono text-[10px] text-charcoal-400 num">
+                  <span>Parte de matrimonio</span>
+                  <span>14 · 03 · 2027</span>
+                </div>
+                <div class="my-auto py-1">
+                  <p class="font-display text-2xl leading-tight text-charcoal-900 sm:text-3xl">
+                    Sofía &amp; Martín
+                  </p>
+                  <p class="mt-1 font-mono text-[11px] font-medium text-gold-500 num">
+                    Familia Pérez · 3 cupos
+                  </p>
+                </div>
+                <div class="border-t border-charcoal-900/10 pt-2 font-mono text-[10px] text-charcoal-400">
+                  Toca el enlace completo para confirmar →
+                </div>
+              </div>
+
+              <!-- 3. Pliegues del bolsillo en papel algodón -->
+              <div class="hero-env-sides pointer-events-none absolute inset-0 rounded-[14px] border border-charcoal-900/10 bg-paper-200 [clip-path:polygon(0_0,50%_52%,0_100%,100%_100%,50%_52%,100%_0,100%_100%,0_100%)]"></div>
+              <div class="hero-env-bottom pointer-events-none absolute inset-0 rounded-[14px] border-b border-charcoal-900/14 bg-paper-300 [clip-path:polygon(0_100%,50%_46%,100%_100%)]"></div>
+
+              <!-- 4. Solapa superior abatible en 3D -->
+              <div class="hero-env-flap pointer-events-none absolute inset-x-0 top-0 h-[56%] origin-top rounded-t-[14px] border-t border-charcoal-900/16 bg-paper-50 [clip-path:polygon(0_0,100%_0,50%_100%)]"></div>
+
+              <!-- 5. Sello lacre latón -->
+              <span class="hero-env-seal absolute left-1/2 top-[52%] flex h-13 w-13 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold-500/60 bg-paper-50 font-display text-base font-normal text-gold-600 shadow-[0_8px_18px_-6px_rgba(18,18,20,0.22)] transition-all sm:h-15 sm:w-15 sm:text-lg">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full border border-gold-400/45 sm:h-11 sm:w-11">
+                  S&amp;M
+                </span>
+              </span>
+            </button>
+          </div>
+
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs text-charcoal-600">
+            <span id="hero-env-hint">Toca el sobre para abrirlo aquí mismo</span>
+            <span aria-hidden="true" class="text-charcoal-400">·</span>
+            <a href="/demos/boda-elegante/" class="font-medium text-indigo-900 underline hover:text-indigo-700">
+              Ver invitación completa
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .hero-env {
+    transform-style: preserve-3d;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-env-back { transform: translateZ(0px); }
+  .hero-env-card {
+    transform: translateZ(4px) translateY(0%);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-env-sides { transform: translateZ(10px); }
+  .hero-env-bottom { transform: translateZ(11px); }
+  .hero-env-flap {
+    transform: translateZ(13px) rotateX(0deg);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-env-seal {
+    transform: translateZ(18px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .hero-env.is-open .hero-env-flap {
+    transform: translateZ(2px) rotateX(180deg);
+  }
+  .hero-env.is-open .hero-env-seal {
+    opacity: 0;
+    transform: translateZ(18px) scale(0.85);
+  }
+  .hero-env.is-open .hero-env-card {
+    transform: translateZ(16px) translateY(-30%);
+  }
+</style>
+
+<script>
+  const heroEnv = document.getElementById('hero-envelope');
+  const heroHint = document.getElementById('hero-env-hint');
+
+  heroEnv?.addEventListener('click', () => {
+    const opened = heroEnv.classList.toggle('is-open');
+    if (heroHint) {
+      heroHint.textContent = opened ? 'Toca de nuevo para cerrar' : 'Toca el sobre para abrirlo aquí mismo';
+    }
+  });
+</script>
