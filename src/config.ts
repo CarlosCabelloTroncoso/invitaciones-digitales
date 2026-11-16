@@ -8,8 +8,8 @@ export const SITE = {
     'Invitaciones web para bodas, XV años, baby shower y cumpleaños en Chile, con confirmación de asistencia y control de cupos.',
   // Formato internacional sin "+" ni espacios (Chile: 569XXXXXXXX)
   whatsapp: '56945701201',
+  whatsappDisplay: '+56 9 4570 1201',
   email: 'ignaciocarlos016@gmail.com',
-  instagram: 'https://instagram.com/tuusuario',
   ciudad: 'Santiago, Chile',
 };
 
