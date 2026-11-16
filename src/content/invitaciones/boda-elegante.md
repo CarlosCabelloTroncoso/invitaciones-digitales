@@ -13,7 +13,7 @@ caracteristicas:
   - Apertura con sobre 3D y extracción de tarjeta
   - Pases personalizados con cupos por familia
   - Cuenta regresiva en tiempo real
-  - Rutas en Waze y Google Maps para iglesia y recepción
+  - Mapa con ubicación exacta para ceremonia y recepción
   - Itinerario del día y dress code
   - Formulario de confirmación conectado a planilla
 ---
